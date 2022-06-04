@@ -11,7 +11,7 @@ from prepocessing import label2emotion
 
 from prepocessing import preprocessData
 MODEL_NAME = 'baseline-EP%d_LR%de-5_LDim%d_BS%d'
-CONFIG_FILE = 'EP75_LR300e-5_LDim128_BS200.config'
+CONFIG_FILE = 'baseline.config'
 GLOVE_FILE = 'glove.6B.200d.txt'
 
 # ----------------------------------- #
