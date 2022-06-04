@@ -28,7 +28,7 @@ def preprocessEmojiData(dataFilePath, mode):
             # Add whitespace around such punctuation
             # okay!sure -> okay ! sure
             line = emoji.demojize(line, delimiters=("", " "))
-            repeatedChars = ['.', '?', '!', ',']
+            repeatedChars = ['.', '?', '!', ',', '_']
             for c in repeatedChars:
                 lineSplit = line.split(c)
                 while True:
@@ -85,7 +85,6 @@ def preprocessData(dataFilePath, mode):
             # okay???sure -> okay ? sure
             # Add whitespace around such punctuation
             # okay!sure -> okay ! sure
-            line = emoji.demojize(line, delimiters=("", " "))
             repeatedChars = ['.', '?', '!', ',']
             for c in repeatedChars:
                 lineSplit = line.split(c)
@@ -94,10 +93,7 @@ def preprocessData(dataFilePath, mode):
                         lineSplit.remove('')
                     except:
                         break
-                if c == "_":
-                    cSpace = ' '
-                else:
-                    cSpace = ' ' + c + ' '
+                cSpace = ' ' + c + ' '
                 line = cSpace.join(lineSplit)
 
             line = line.strip().split('\t')
