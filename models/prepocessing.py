@@ -87,7 +87,6 @@ def preprocessPunctiationData(dataFilePath, mode):
             # okay!sure -> okay ! sure
             repeatedChars = ['.', '?', '!', ',', '_']
             importantChars = ['?', '!']
-            importantCharsDict = {'?': 'repeated question mark', '!': 'repeated exclamation mark'}
             for c in repeatedChars:
                 lineSplit = line.split(c)
                 repeated = 0
@@ -100,7 +99,7 @@ def preprocessPunctiationData(dataFilePath, mode):
                     except:
                         break
                 if c in importantChars and repeated > 1:
-                    cSpace = ' ' + importantCharsDict[c] + ' '
+                    cSpace = ' ' + (c*repeated) + ' '
                 else:
                     cSpace = ' ' + c + ' '
                 line = cSpace.join(lineSplit)

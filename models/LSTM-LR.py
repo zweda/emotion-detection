@@ -9,10 +9,10 @@ from prepocessing import label2emotion
 
 # ----------------------------------- #
 
-from prepocessing import preprocessData
-MODEL_NAME = 'baseline-EP%d_LR%de-5_LDim%d_BS%d'
+from prepocessing import preprocessEmojiData as preprocessData
+MODEL_NAME = 'twitter-emoji-replaced-EP%d_LR%de-5_LDim%d_BS%d'
 CONFIG_FILE = 'baseline.config'
-GLOVE_FILE = 'glove.6B.200d.txt'
+GLOVE_FILE = 'glove.twitter.27B.200d.txt'
 
 # ----------------------------------- #
 

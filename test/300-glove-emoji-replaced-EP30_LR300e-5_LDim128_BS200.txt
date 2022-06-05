@@ -1,0 +1,9 @@
+True Positives per class : [4166.  209.  197.  253.]
+False Positives per class : [143. 152. 161. 228.]
+False Negatives per class : [511.  75.  53.  45.]
+Class happy : Precision : 0.579, Recall : 0.736, F1 : 0.648
+Class sad : Precision : 0.550, Recall : 0.788, F1 : 0.648
+Class angry : Precision : 0.526, Recall : 0.849, F1 : 0.650
+Ignoring the Others class, Macro Precision : 0.5517, Macro Recall : 0.7910, Macro F1 : 0.6500
+Ignoring the Others class, Micro TP : 659, FP : 541, FN : 173
+Accuracy : 0.8758, Micro Precision : 0.5492, Micro Recall : 0.7921, Micro F1 : 0.6486

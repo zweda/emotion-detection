@@ -1,0 +1,43 @@
+----------------------------------------
+Fold 1/3
+True Positives per class : [4651.  936. 1198. 1511.]
+False Positives per class : [1094.  185.  183.  295.]
+False Negatives per class : [392. 493. 577. 295.]
+Class happy : Precision : 0.835, Recall : 0.655, F1 : 0.734
+Class sad : Precision : 0.867, Recall : 0.675, F1 : 0.759
+Class angry : Precision : 0.837, Recall : 0.837, F1 : 0.837
+Ignoring the Others class, Macro Precision : 0.8464, Macro Recall : 0.7222, Macro F1 : 0.7794
+Ignoring the Others class, Micro TP : 3645, FP : 663, FN : 1365
+Accuracy : 0.8252, Micro Precision : 0.8461, Micro Recall : 0.7275, Micro F1 : 0.7824
+----------------------------------------
+Fold 2/3
+True Positives per class : [4364. 1100. 1396. 1635.]
+False Positives per class : [617. 323. 236. 382.]
+False Negatives per class : [572. 338. 463. 185.]
+Class happy : Precision : 0.773, Recall : 0.765, F1 : 0.769
+Class sad : Precision : 0.855, Recall : 0.751, F1 : 0.800
+Class angry : Precision : 0.811, Recall : 0.898, F1 : 0.852
+Ignoring the Others class, Macro Precision : 0.8130, Macro Recall : 0.8047, Macro F1 : 0.8089
+Ignoring the Others class, Micro TP : 4131, FP : 941, FN : 986
+Accuracy : 0.8450, Micro Precision : 0.8145, Micro Recall : 0.8073, Micro F1 : 0.8109
+----------------------------------------
+Fold 3/3
+True Positives per class : [4350. 1115. 1471. 1496.]
+False Positives per class : [701. 431. 325. 164.]
+False Negatives per class : [618. 261. 358. 384.]
+Class happy : Precision : 0.721, Recall : 0.810, F1 : 0.763
+Class sad : Precision : 0.819, Recall : 0.804, F1 : 0.812
+Class angry : Precision : 0.901, Recall : 0.796, F1 : 0.845
+Ignoring the Others class, Macro Precision : 0.8138, Macro Recall : 0.8034, Macro F1 : 0.8086
+Ignoring the Others class, Micro TP : 4082, FP : 920, FN : 1003
+Accuracy : 0.8388, Micro Precision : 0.8161, Micro Recall : 0.8028, Micro F1 : 0.8094
+
+============= Metrics =================
+Average Cross-Validation Accuracy : 0.8363
+Average Cross-Validation Micro Precision : 0.8255
+Average Cross-Validation Micro Recall : 0.7792
+Average Cross-Validation Micro F1 : 0.8009
+=======================================
+
+Completed. Model parameters: 
+Learning rate : 0.003, LSTM Dim : 128, Dropout : 0.200, Batch_size : 200
