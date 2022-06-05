@@ -1,0 +1,65 @@
+----------------------------------------
+Fold 1/5
+True Positives per class : [2694.  613.  875.  934.]
+False Positives per class : [427. 180. 198. 111.]
+False Negatives per class : [311. 189. 222. 194.]
+Class happy : Precision : 0.773, Recall : 0.764, F1 : 0.769
+Class sad : Precision : 0.815, Recall : 0.798, F1 : 0.806
+Class angry : Precision : 0.894, Recall : 0.828, F1 : 0.860
+Ignoring the Others class, Macro Precision : 0.8274, Macro Recall : 0.7967, Macro F1 : 0.8117
+Ignoring the Others class, Micro TP : 2422, FP : 489, FN : 605
+Accuracy : 0.8481, Micro Precision : 0.8320, Micro Recall : 0.8001, Micro F1 : 0.8158
+----------------------------------------
+Fold 2/5
+True Positives per class : [2688.  668.  876.  891.]
+False Positives per class : [385. 206. 229.  89.]
+False Negatives per class : [335. 173. 191. 210.]
+Class happy : Precision : 0.764, Recall : 0.794, F1 : 0.779
+Class sad : Precision : 0.793, Recall : 0.821, F1 : 0.807
+Class angry : Precision : 0.909, Recall : 0.809, F1 : 0.856
+Ignoring the Others class, Macro Precision : 0.8221, Macro Recall : 0.8082, Macro F1 : 0.8151
+Ignoring the Others class, Micro TP : 2435, FP : 524, FN : 574
+Accuracy : 0.8493, Micro Precision : 0.8229, Micro Recall : 0.8092, Micro F1 : 0.8160
+----------------------------------------
+Fold 3/5
+True Positives per class : [2763.  596.  839.  913.]
+False Positives per class : [534. 120. 140. 127.]
+False Negatives per class : [236. 241. 262. 182.]
+Class happy : Precision : 0.832, Recall : 0.712, F1 : 0.768
+Class sad : Precision : 0.857, Recall : 0.762, F1 : 0.807
+Class angry : Precision : 0.878, Recall : 0.834, F1 : 0.855
+Ignoring the Others class, Macro Precision : 0.8558, Macro Recall : 0.7693, Macro F1 : 0.8102
+Ignoring the Others class, Micro TP : 2348, FP : 387, FN : 685
+Accuracy : 0.8473, Micro Precision : 0.8585, Micro Recall : 0.7742, Micro F1 : 0.8141
+----------------------------------------
+Fold 4/5
+True Positives per class : [2525.  663.  895.  969.]
+False Positives per class : [393. 161. 188. 238.]
+False Negatives per class : [389. 222. 224. 145.]
+Class happy : Precision : 0.805, Recall : 0.749, F1 : 0.776
+Class sad : Precision : 0.826, Recall : 0.800, F1 : 0.813
+Class angry : Precision : 0.803, Recall : 0.870, F1 : 0.835
+Ignoring the Others class, Macro Precision : 0.8113, Macro Recall : 0.8063, Macro F1 : 0.8088
+Ignoring the Others class, Micro TP : 2527, FP : 587, FN : 591
+Accuracy : 0.8375, Micro Precision : 0.8115, Micro Recall : 0.8105, Micro F1 : 0.8110
+----------------------------------------
+Fold 5/5
+True Positives per class : [2735.  718.  859.  870.]
+False Positives per class : [420. 191. 136. 103.]
+False Negatives per class : [272. 160. 220. 198.]
+Class happy : Precision : 0.790, Recall : 0.818, F1 : 0.804
+Class sad : Precision : 0.863, Recall : 0.796, F1 : 0.828
+Class angry : Precision : 0.894, Recall : 0.815, F1 : 0.853
+Ignoring the Others class, Macro Precision : 0.8491, Macro Recall : 0.8095, Macro F1 : 0.8288
+Ignoring the Others class, Micro TP : 2447, FP : 430, FN : 578
+Accuracy : 0.8591, Micro Precision : 0.8505, Micro Recall : 0.8089, Micro F1 : 0.8292
+
+============= Metrics =================
+Average Cross-Validation Accuracy : 0.8483
+Average Cross-Validation Micro Precision : 0.8351
+Average Cross-Validation Micro Recall : 0.8006
+Average Cross-Validation Micro F1 : 0.8172
+=======================================
+
+Completed. Model parameters: 
+Learning rate : 0.003, LSTM Dim : 128, Dropout : 0.200, Batch_size : 200

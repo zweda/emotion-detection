@@ -318,7 +318,7 @@ def main():
     print("Retraining model on entire data to create solutions file")
     model = buildModel(embeddingMatrix)
     model.fit(data, labels, epochs=NUM_EPOCHS, batch_size=BATCH_SIZE)
-    model.save(os.path.join(sys.path[0], SAVED_MODELS_DIR, (MODEL_NAME + '.h5') % (NUM_EPOCHS, int(LEARNING_RATE * (10 ** 5)), LSTM_DIM, BATCH_SIZE) % (NUM_EPOCHS, int(LEARNING_RATE * (10 ** 5)), LSTM_DIM, BATCH_SIZE)))
+    model.save(os.path.join(sys.path[0], SAVED_MODELS_DIR, (MODEL_NAME + '.h5') % (NUM_EPOCHS, int(LEARNING_RATE * (10 ** 5)), LSTM_DIM, BATCH_SIZE)))
 
     predictAndSave(model, testSequences)
 
