@@ -125,7 +125,7 @@ def preprocessPunctiationData(dataFilePath, mode):
         return indices, conversations
 
 
-def preprocessData(dataFilePath, mode):
+def preprocessDataBasic(dataFilePath, mode):
     """
     Load data from a file, process and return indices, conversations and labels in separate lists
     Input:

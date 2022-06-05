@@ -15,7 +15,7 @@ def buildDeeperModel(embeddingMatrix, EMBEDDING_DIM, MAX_SEQUENCE_LENGTH, LSTM_D
                   metrics=['acc'])
     return model
 
-def buildModel(embeddingMatrix, EMBEDDING_DIM, MAX_SEQUENCE_LENGTH, LSTM_DIM, DROPOUT, NUM_CLASSES, LEARNING_RATE):
+def buildBaselineModel(embeddingMatrix, EMBEDDING_DIM, MAX_SEQUENCE_LENGTH, LSTM_DIM, DROPOUT, NUM_CLASSES, LEARNING_RATE):
     """
     Constructs the architecture of the model
     Input:
