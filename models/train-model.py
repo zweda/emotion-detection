@@ -10,7 +10,8 @@ from prepocessing import label2emotion
 # ----------------------------------- #
 
 from prepocessing import preprocessEmojiData as preprocessData
-MODEL_NAME = 'twitter-emoji-replaced-EP%d_LR%de-5_LDim%d_BS%d'
+from build import buildDeeperModel as buildModel
+MODEL_NAME = 'bilstm-twitter-emoji-replaced-EP%d_LR%de-5_LDim%d_BS%d'
 CONFIG_FILE = 'baseline.config'
 GLOVE_FILE = 'glove.twitter.27B.200d.txt'
 
@@ -182,27 +183,6 @@ def getEmbeddingMatrix(wordIndex):
     return embeddingMatrix
 
 
-def buildModel(embeddingMatrix):
-    """
-    Constructs the architecture of the model
-    Input:
-        embeddingMatrix : The embedding matrix to be loaded in the embedding layer.
-    Output:
-        model : A basic LSTM model
-    """
-    embeddingLayer = tf.keras.layers.Embedding(embeddingMatrix.shape[0], EMBEDDING_DIM, weights=[embeddingMatrix], input_length=MAX_SEQUENCE_LENGTH, trainable=False)
-    model = tf.keras.models.Sequential()
-    model.add(embeddingLayer)
-    model.add(tf.keras.layers.LSTM(LSTM_DIM, dropout=DROPOUT))
-    model.add(tf.keras.layers.Dense(NUM_CLASSES, activation='sigmoid'))
-
-    rmsprop = tf.keras.optimizers.RMSprop(learning_rate=LEARNING_RATE)
-    model.compile(loss='categorical_crossentropy',
-                  optimizer=rmsprop,
-                  metrics=['acc'])
-    return model
-
-
 def predictAndSave(model, testSequences, tokenizer=None, load=False):
     if load and tokenizer:
         model = tf.keras.models.load_model(os.path.join(sys.path[0], SAVED_MODELS_DIR, (MODEL_NAME + '.h5') % (NUM_EPOCHS, int(LEARNING_RATE * (10 ** 5)), LSTM_DIM, BATCH_SIZE)))
@@ -296,7 +276,7 @@ def main():
         xVal = data[index1:index2]
         yVal = labels[index1:index2]
         print("Building model...")
-        model = buildModel(embeddingMatrix)
+        model = buildModel(embeddingMatrix, EMBEDDING_DIM, MAX_SEQUENCE_LENGTH, LSTM_DIM, DROPOUT, NUM_CLASSES, LEARNING_RATE)
         model.fit(xTrain, yTrain,
                   validation_data=(xVal, yVal),
                   epochs=NUM_EPOCHS, batch_size=BATCH_SIZE)
@@ -316,7 +296,7 @@ def main():
     log("=======================================\n")
 
     print("Retraining model on entire data to create solutions file")
-    model = buildModel(embeddingMatrix)
+    model = buildModel(embeddingMatrix, EMBEDDING_DIM, MAX_SEQUENCE_LENGTH, LSTM_DIM, DROPOUT, NUM_CLASSES, LEARNING_RATE)
     model.fit(data, labels, epochs=NUM_EPOCHS, batch_size=BATCH_SIZE)
     model.save(os.path.join(sys.path[0], SAVED_MODELS_DIR, (MODEL_NAME + '.h5') % (NUM_EPOCHS, int(LEARNING_RATE * (10 ** 5)), LSTM_DIM, BATCH_SIZE)))
 
