@@ -9,9 +9,9 @@ from prepocessing import label2emotion
 
 # ----------------------------------- #
 
-from prepocessing import preprocessEmojiData as preprocessData
+from prepocessing import preprocessDataRemovingOthers as preprocessData
 from build import buildDeeperModel as buildModel
-MODEL_NAME = 'bilstm-twitter-emoji-replaced-EP%d_LR%de-5_LDim%d_BS%d'
+MODEL_NAME = 'excluded-other-twitter-emoji-replaced-EP%d_LR%de-5_LDim%d_BS%d'
 CONFIG_FILE = 'baseline.config'
 GLOVE_FILE = 'glove.twitter.27B.200d.txt'
 
@@ -229,11 +229,11 @@ def main():
 
     print("Processing training data...")
     trainIndices, trainTexts, labels = preprocessData(TRAIN_DATA_PATH, mode="train")
-    writeNormalisedData(TRAIN_DATA_PATH, trainTexts)
+    # writeNormalisedData(TRAIN_DATA_PATH, trainTexts)
 
     print("Processing test data...")
-    testIndices, testTexts = preprocessData(TEST_DATA_PATH, mode="test")
-    writeNormalisedData(TEST_DATA_PATH, testTexts)
+    testIndices, testTexts, _ = preprocessData(TEST_DATA_PATH, mode="test")
+    # writeNormalisedData(TEST_DATA_PATH, testTexts)
 
     print("Extracting tokens...")
     tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=MAX_NB_WORDS)

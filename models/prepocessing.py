@@ -1,4 +1,5 @@
 import io
+import random
 import re
 import emoji
 
@@ -64,16 +65,6 @@ def preprocessEmojiData(dataFilePath, mode):
 
 
 def preprocessPunctiationData(dataFilePath, mode):
-    """
-    Load data from a file, process and return indices, conversations and labels in separate lists
-    Input:
-        dataFilePath : Path to train/test file to be processed
-        mode : "train" mode returns labels. "test" mode doesn't return labels.
-    Output:
-        indices : Unique conversation ID list
-        conversations : List of 3 turn conversations, processed and each turn separated by the <eos> tag
-        labels : [Only available in "train" mode] List of labels
-    """
     indices = []
     conversations = []
     labels = []
@@ -126,16 +117,6 @@ def preprocessPunctiationData(dataFilePath, mode):
 
 
 def preprocessDataBasic(dataFilePath, mode):
-    """
-    Load data from a file, process and return indices, conversations and labels in separate lists
-    Input:
-        dataFilePath : Path to train/test file to be processed
-        mode : "train" mode returns labels. "test" mode doesn't return labels.
-    Output:
-        indices : Unique conversation ID list
-        conversations : List of 3 turn conversations, processed and each turn separated by the <eos> tag
-        labels : [Only available in "train" mode] List of labels
-    """
     indices = []
     conversations = []
     labels = []
@@ -177,3 +158,49 @@ def preprocessDataBasic(dataFilePath, mode):
         return indices, conversations, labels
     else:
         return indices, conversations
+
+
+def preprocessDataRemovingOthers(dataFilePath, mode):
+    indices = []
+    conversations = []
+    labels = []
+    with io.open(dataFilePath, encoding="utf8") as finput:
+        finput.readline()
+        for line in finput:
+            # Convert multiple instances of . ? ! , to single instance
+            # okay...sure -> okay . sure
+            # okay???sure -> okay ? sure
+            # Add whitespace around such punctuation
+            # okay!sure -> okay ! sure
+            repeatedChars = ['.', '?', '!', ',']
+            for c in repeatedChars:
+                lineSplit = line.split(c)
+                while True:
+                    try:
+                        lineSplit.remove('')
+                    except:
+                        break
+                cSpace = ' ' + c + ' '
+                line = cSpace.join(lineSplit)
+
+            includeData = 1
+
+            line = line.strip().split('\t')
+            label = emotion2label[line[4]]
+            if label == 0:
+                includeData = 0
+            if includeData:
+                labels.append(label)
+
+                conv = ' <eos> '.join(line[1:4])
+
+                # Remove any duplicate spaces
+                duplicateSpacePattern = re.compile(r'\s+')
+                conv = re.sub(duplicateSpacePattern, ' ', conv)
+
+                indices.append(int(line[0]))
+                conversations.append(conv.lower())
+
+    return indices, conversations, labels
+
+

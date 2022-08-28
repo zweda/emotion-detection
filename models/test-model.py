@@ -3,12 +3,18 @@ import io
 
 import numpy as np
 import tensorflow as tf
+from prepocessing import preprocessDataRemovingOthers as preprocessData
+from prepocessing import preprocessDataBasic
+
+MODEL_DIR = './models/saved'
+MODEL_FILE = 'twitter-emoji-replaced-EP10_LR300e-5_LDim128_BS100.h5'
 
 SOLUTION_NAME = '300-glove-emoji-replaced-EP30_LR300e-5_LDim128_BS200.txt'
 LOG_DIR = './test'
 
 SOLUTION_DIR = './solutions'
 TEST_FILE = './datasets/test.txt'
+TRAIN_FILE = './datasets/train.txt'
 NUM_CLASSES = 4
 
 label2emotion = {0: "others", 1: "happy", 2: "sad", 3: "angry"}
@@ -85,7 +91,7 @@ def getMetrics(predictions, ground):
 
     log("Accuracy : %.4f, Micro Precision : %.4f, Micro Recall : %.4f, Micro F1 : %.4f" % (float(accuracy), microPrecision, microRecall, microF1), close=True)
 
-def main():
+def testSolution():
     true = []
     predicted = []
     with io.open(TEST_FILE, encoding="utf8") as finput:
@@ -105,6 +111,21 @@ def main():
     predicted = tf.keras.utils.to_categorical(np.asarray(predicted))
     getMetrics(predicted, true)
 
+def testPretrainedModel():
+    trainIndices, trainTexts = preprocessDataBasic(TRAIN_FILE, mode="test")
+    testIndices, testTexts, labels = preprocessData(TEST_FILE, mode="test")
+    true = tf.keras.utils.to_categorical(np.asarray(labels))
+
+    model = tf.keras.models.load_model(os.path.join(MODEL_DIR, MODEL_FILE))
+    tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=20000)
+    tokenizer.fit_on_texts(trainTexts)
+    testSequences = tokenizer.texts_to_sequences(testTexts)
+
+    testData = tf.keras.preprocessing.sequence.pad_sequences(testSequences, maxlen=100)
+    predictions = model.predict(testData, batch_size=100)
+    predictions = tf.keras.utils.to_categorical(predictions.argmax(axis=1))
+    getMetrics(predictions, true)
+
 
 if __name__ == '__main__':
-    main()
+    testPretrainedModel()
